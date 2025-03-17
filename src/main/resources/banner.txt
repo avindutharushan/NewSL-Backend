@@ -1,0 +1,16 @@
+
+  ${AnsiColor.WHITE} _   _                     ${AnsiColor.BRIGHT_YELLOW}   ____    _
+  ${AnsiColor.WHITE}| \ | |                    ${AnsiColor.BRIGHT_YELLOW} / _____) | |
+  ${AnsiColor.WHITE}|  \| |   ___   _   _   _  ${AnsiColor.BRIGHT_YELLOW}( (____   | |
+  ${AnsiColor.WHITE}|     | / ___ \| | | | | | ${AnsiColor.BRIGHT_YELLOW} \_____ \ | |
+  ${AnsiColor.WHITE}| |\  || |____/| | | | | | ${AnsiColor.BRIGHT_YELLOW}  _____) )| |____
+  ${AnsiColor.WHITE}|_| \_| \_____) \___^___/  ${AnsiColor.BRIGHT_YELLOW} (______/ |_______\
+
+${AnsiColor.BRIGHT_YELLOW}  ::::::::::::::::::::::::::::::::::::::::::::::::::::::${AnsiColor.DEFAULT}
+
+${AnsiColor.GREEN}  :: ${AnsiColor.WHITE}New${AnsiColor.BRIGHT_YELLOW}SL${AnsiColor.GREEN} Web Application      ::    ${AnsiColor.BRIGHT_YELLOW}(v1.0.0)
+${AnsiColor.GREEN}  :: Developed by               ::    ${AnsiColor.BRIGHT_YELLOW}Avindu Tharushan
+${AnsiColor.GREEN}  :: Powered by Spring Boot     ::    ${AnsiColor.BRIGHT_YELLOW}(v3.3.6)
+${AnsiColor.GREEN}  :: Secured by Spring Security ::    ${AnsiColor.BRIGHT_YELLOW}(v6.1.4)
+
+${AnsiColor.BRIGHT_YELLOW}  ::::::::::::::::::::::::::::::::::::::::::::::::::::::${AnsiColor.DEFAULT}
