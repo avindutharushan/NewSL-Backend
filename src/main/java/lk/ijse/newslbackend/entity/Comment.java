@@ -37,9 +37,6 @@ public class Comment {
     @Column(name = "parent_comment_id")
     private Long parentCommentId;
 
-    @Column(name = "is_approved")
-    private boolean isApproved = false;
-
     // Self-referencing relationship for nested comments
     @ManyToOne
     @JoinColumn(name = "parent_id")
