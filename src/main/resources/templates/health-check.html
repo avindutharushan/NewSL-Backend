@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Check</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a1a;
+            background-image: linear-gradient(135deg, #252525 25%, transparent 25%),
+            linear-gradient(225deg, #252525 25%, transparent 25%),
+            linear-gradient(45deg, #252525 25%, transparent 25%),
+            linear-gradient(315deg, #252525 25%, #1a1a1a 25%);
+            background-position: 10px 0, 10px 0, 0 0, 0 0;
+            background-size: 20px 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            max-width: 600px;
+            width: 90%;
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #1a1a1a;
+            animation: fadeIn 1s ease-in-out;
+            border: 1px solid #ffd700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background: linear-gradient(90deg, #1a1a1a, #333333);
+            padding: 15px;
+            border-radius: 10px 10px 0 0 !important;
+            text-align: center;
+            color: #ffd700;
+            border-bottom: 3px solid #ffd700;
+            transition: background-color 0.3s ease;
+        }
+        .card-body {
+            background-color: #ffffff;
+            padding: 20px;
+        }
+        .lead {
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+        .footer {
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #444444;
+            background-color: #fff5ad;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h1 th:text="${message}">System Status</h1>
+                </div>
+                <div class="card-body">
+                    <p class="lead">The NewSL BACKEND is running smoothly.</p>
+                </div>
+                <div class="footer">
+                    <p>The NewSL Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
