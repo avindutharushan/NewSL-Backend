@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Account Deactivation</title>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      background-image: linear-gradient(135deg, #252525 25%, transparent 25%),
+      linear-gradient(225deg, #252525 25%, transparent 25%),
+      linear-gradient(45deg, #252525 25%, transparent 25%),
+      linear-gradient(315deg, #252525 25%, #1a1a1a 25%);
+      background-position: 10px 0, 10px 0, 0 0, 0 0;
+      background-size: 20px 20px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .email-wrapper {
+      max-width: 600px;
+      width: 90%;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      color: #1a1a1a;
+      animation: fadeIn 1s ease-in-out;
+      border: 1px solid #ffd700;
+    }
+    .header {
+      background: linear-gradient(90deg, #1a1a1a, #333333);
+      padding: 15px;
+      border-radius: 10px 10px 0 0;
+      text-align: center;
+      color: #ffd700;
+      border-bottom: 3px solid #ffd700;
+    }
+    .email-body {
+      padding: 20px;
+    }
+    .footer {
+      padding: 20px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #444444;
+      background-color: #fff5ad;
+      border-radius: 0 0 10px 10px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="email-wrapper">
+  <div class="header">
+    <h1>Account Deactivation</h1>
+  </div>
+  <div class="email-body">
+    <h2>Hello, <span th:text="${name}">User</span>!</h2>
+    <p>We're sorry to see you go. Your account on NewSL has been successfully deactivated. If this was a mistake or you would like to reactivate your account, please contact our support team.</p>
+    <p>If you have any questions or concerns, feel free to reach out to us. We're always here to help.</p>
+  </div>
+  <div class="footer">
+    <p>Best Regards, <br> The NewSL Team</p>
+  </div>
+</div>
+</body>
+</html>
