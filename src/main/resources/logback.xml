@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration >
+    <!-- Properties for reuse -->
+    <property name="LOG_PATH" value="logs" />
+    <property name="COMMON_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n" />
+    <property name="FILE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+
+    <!-- Console Appender with colors for better readability -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${COMMON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender with Rolling Strategy -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/current.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Fixed the pattern - this was causing the error -->
+            <fileNamePattern>${LOG_PATH}/%d{yyyy/MM/dd}/application-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>70MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>400MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Async Appender for improved performance -->
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE" />
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>false</includeCallerData>
+        <neverBlock>false</neverBlock>
+    </appender>
+
+    <!-- Error-specific file for easier troubleshooting -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy/MM/dd}/error-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger Configurations -->
+    <!-- Updated to match your project package name -->
+    <logger name="lk.ijse.newslbackend" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ASYNC_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </logger>
+
+    <logger name="org.springframework.security" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ASYNC_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </logger>
+
+    <!-- Third-party libraries - reduce verbosity -->
+    <logger name="org.hibernate" level="WARN" />
+    <logger name="org.springframework" level="WARN" />
+    <logger name="com.zaxxer.hikari" level="WARN" />
+
+    <!-- Root Logger Configuration -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ASYNC_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </root>
+</configuration>
