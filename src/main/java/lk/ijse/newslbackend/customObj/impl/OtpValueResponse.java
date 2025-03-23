@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class OtpErrorResponse implements OtpResponse  {
-    private int errorCode;
-    private String errorMessage;
-
+public class OtpValueResponse implements OtpResponse {
+    private String otp;
+    private String username;
 }
