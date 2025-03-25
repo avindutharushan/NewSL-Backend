@@ -217,4 +217,14 @@ public class ImageUploadUtil {
     private static String getFileExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
+
+    public static String saveDefaultImage(String type) {
+        if ("profile".equals(type)) {
+            return "/home/shan/IdeaProjects/NewSL-Backend/src/main/resources/assets/images/profile-images/profile-icon-NewSL.jpg";
+        } else if ("cover".equals(type)) {
+            return "default_cover.jpg";
+        } else {
+            return "default.jpg";
+        }
+    }
 }

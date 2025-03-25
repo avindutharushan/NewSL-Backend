@@ -80,7 +80,11 @@ public class AuthServiceImpl implements AuthService {
 
         String imageUrl = null;
         try {
+            if (signUpUser.getProfilePicture() == null){
+                imageUrl= ImageUploadUtil.saveDefaultImage("profile");
+            }else {
             imageUrl = ImageUploadUtil.saveFile(signUpUser.getUsername(), "profile", signUpUser.getProfilePicture());
+            }
         } catch (Exception e) {
             throw new FileConversionException("Cannot save file");
         }
