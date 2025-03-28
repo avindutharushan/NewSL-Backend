@@ -19,7 +19,7 @@ import java.util.function.Function;
 /**
  * Service implementation for JWT operations.
  * This class provides methods to generate, validate, and extract information from JWT tokens.
- * @author Gayanuka Bulegoda
+ * @author Avindu Tharushan
  */
 @Service
 public class JwtServiceImpl implements JwtService {
