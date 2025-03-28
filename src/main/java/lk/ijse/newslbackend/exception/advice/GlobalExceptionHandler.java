@@ -37,6 +37,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
     /**
+     * This method is used to handle the exceptions that are thrown when the article is not found.
+     * @param e ArticleNotFoundException object
+     * @return ResponseEntity object with a ArticleResponse object and the status code
+     */
+    @ExceptionHandler(ArticleNotFoundException.class)
+    public ResponseEntity<ArticleResponse> handleArticleNotFoundException(ArticleNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ArticleErrorResponse(0, e.getMessage()));
+    }
+    /**
      * This method is used to handle the exceptions that are thrown when the file conversion fails.
      * @param e FileConversionException object
      * @return ResponseEntity object with a FileResponse object and the status code

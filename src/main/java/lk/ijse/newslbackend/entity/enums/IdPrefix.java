@@ -11,6 +11,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum IdPrefix {
-    USER("USR");
+    ARTICLE("ART");
     private final String prefix;
 }

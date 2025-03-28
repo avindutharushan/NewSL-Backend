@@ -16,8 +16,7 @@ import java.util.List;
 @Table(name = "articles")
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "reporter_id", nullable = false)
@@ -62,8 +61,5 @@ public class Article {
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List<ArticleCategory> articleCategories;
-
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List<ArticleTag> articleTags;
 
 }
