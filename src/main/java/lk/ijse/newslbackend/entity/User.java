@@ -41,9 +41,6 @@ public class User implements  UserDetails {
     private String profilePicture;
 
     // Relationships
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserPreference userPreference;
-
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 

@@ -2,10 +2,12 @@ package lk.ijse.newslbackend.service.impl;
 
 
 import lk.ijse.newslbackend.customObj.impl.MailBody;
+import lk.ijse.newslbackend.entity.ReporterProfile;
 import lk.ijse.newslbackend.entity.User;
 import lk.ijse.newslbackend.exception.*;
 import lk.ijse.newslbackend.jwtModels.JwtAuthResponse;
 import lk.ijse.newslbackend.jwtModels.UserRequestDTO;
+import lk.ijse.newslbackend.repository.ReporterProfileRepository;
 import lk.ijse.newslbackend.repository.UserRepository;
 import lk.ijse.newslbackend.service.AuthService;
 import lk.ijse.newslbackend.service.JwtService;
@@ -16,8 +18,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,12 +29,13 @@ import java.util.Optional;
 /**
  * This class was created to handle authentication related services
  * AuthService Implementation
- * @author - Gayanuka Bulegoda
+ * @author - Avindu Tharushan
  */
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
+    private final ReporterProfileRepository reporterProfileRepository;
     private final JwtService jwtService;
     private final Mapping mapping;
     private final AuthenticationManager authenticationManager;
@@ -61,6 +66,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public JwtAuthResponse signUp(UserRequestDTO signUpUser){
         userRepository.findByEmail(signUpUser.getEmail())
                 .ifPresent(user -> {
@@ -92,6 +98,13 @@ public class AuthServiceImpl implements AuthService {
 
         try {
             User savedUser = userRepository.save(user);
+            if (role.equals("REPORTER")) {
+                reporterProfileRepository.save(
+                        ReporterProfile.builder()
+                                .user(savedUser)
+                                .joinedDate(LocalDate.now())
+                                .build());
+            }
             var generatedToken = jwtService.generateToken(savedUser);
             return JwtAuthResponse
                     .builder()

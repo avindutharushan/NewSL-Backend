@@ -2,6 +2,7 @@ package lk.ijse.newslbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "reporter_profiles")
+@Builder
 public class ReporterProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
