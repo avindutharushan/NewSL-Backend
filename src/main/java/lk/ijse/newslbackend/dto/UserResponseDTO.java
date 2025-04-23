@@ -13,5 +13,5 @@ public class UserResponseDTO implements UserResponse {
     private String username;
     private String email;
     private String role;
-    private MultipartFile profilePicture;
+    private String profilePicture;
 }

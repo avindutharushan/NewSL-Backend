@@ -45,12 +45,12 @@ public class UserController {
     /**
      * Endpoint for retrieving a user by email.
      *
-     * @param email the email of the user to retrieve
+     * @param username the email of the user to retrieve
      * @return ResponseEntity with the user data and OK status
      */
     @GetMapping
-    public ResponseEntity<UserResponse> getUser(@RequestParam("email") String email) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.getSelectedUser(email));
+    public ResponseEntity<UserResponse> getUser(@RequestParam("username") String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getSelectedUser(username));
     }
     /**
      * Endpoint for retrieving all users.

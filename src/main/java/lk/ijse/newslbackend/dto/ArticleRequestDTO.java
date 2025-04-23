@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 @Data
 public class ArticleRequestDTO implements ArticleResponse {
-    private String code;
+    private String id;
     @NotBlank
     private String reporter;
     @NotBlank
@@ -19,6 +19,4 @@ public class ArticleRequestDTO implements ArticleResponse {
     @NotBlank
     private String content;
     private MultipartFile coverImage;
-    @NotBlank
-    private String status;
 }

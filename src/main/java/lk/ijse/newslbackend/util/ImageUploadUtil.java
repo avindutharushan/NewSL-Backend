@@ -15,7 +15,7 @@ import java.util.Base64;
 import java.util.Objects;
 
 public class ImageUploadUtil {
-    private static final String BASE_PATH = System.getProperty("user.home") + "/IdeaProjects/NewSL-Backend/src/main/resources/assets/";
+    private static final String BASE_PATH = System.getProperty("user.home") + "/Documents/VScode-Project/NewSl-Frontend/assets/";
     private static final String IMAGES_PATH = BASE_PATH + "images/";
     private static final String PROFILE_IMAGES_PATH = IMAGES_PATH + "profile-images/";
     private static final String COVER_IMAGES_PATH = IMAGES_PATH + "cover-images/";
@@ -74,7 +74,15 @@ public class ImageUploadUtil {
         } catch (IOException ioException) {
             throw new IOException("Failed to save image file: " + fileName, ioException);
         }
-        return uploadPath + "/" + fileName;
+        if ("profile".equals(type)) {
+            System.out.println(fileName);
+            return "/assets/images/profile-images/" + fileName;
+        }
+        else if ("cover".equals(type)) {
+            return "/assets/images/cover-images/" + fileName;
+        } else {
+            return "/assets/images/" + fileName;
+        }
     }
 
     /**
@@ -88,9 +96,9 @@ public class ImageUploadUtil {
         MultipartFile profilePic = getProfileImage(userDTO.getUsername());
         //String coverPic = getCoverImage(userDTO.getUserId());
 
-        if (profilePic != null) {
+        /*if (profilePic != null) {
             userDTO.setProfilePicture(profilePic);
-        }
+        }*/
 
         /*if (coverPic != null) {
             userDTO.setCoverImg(coverPic);
@@ -109,9 +117,11 @@ public class ImageUploadUtil {
     public static MultipartFile getProfileImage(String userId) {
         try {
             for (String format : ALLOWED_FORMATS) {
-                File profilePic = new File(BASE_PATH + userId + "/" + userId + "_profile_photo" + format);
+                File profilePic = new File(BASE_PATH + IMAGES_PATH + PROFILE_IMAGES_PATH + userId + "_profile_photo" + format);
                 if (profilePic.exists()) {
                     return convertFileToMultipartFile(profilePic);
+                }else {
+                    return convertFileToMultipartFile(new File(BASE_PATH + IMAGES_PATH + PROFILE_IMAGES_PATH + "profile-icon-NewSL.jpg"));
                 }
             }
         } catch (IOException e) {
@@ -220,7 +230,7 @@ public class ImageUploadUtil {
 
     public static String saveDefaultImage(String type) {
         if ("profile".equals(type)) {
-            return "/home/shan/IdeaProjects/NewSL-Backend/src/main/resources/assets/images/profile-images/profile-icon-NewSL.jpg";
+            return "/assets/images/profile-images/profile-icon-NewSL.jpg";
         } else if ("cover".equals(type)) {
             return "default_cover.jpg";
         } else {

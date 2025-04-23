@@ -35,6 +35,9 @@ public class Subscription {
     @Column(name = "auto_renew")
     private boolean autoRenew = true;
 
+    @Column(name = "amount")
+    private double amount;
+
     @Column(name = "payment_status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;

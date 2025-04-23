@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmail(String email);
-    boolean existsByEmail(String email);
     @Query("SELECT COUNT(u) FROM User u")
     long countAllUsers();
 

@@ -1,6 +1,7 @@
 package lk.ijse.newslbackend.util;
 
 import jakarta.annotation.PostConstruct;
+import lk.ijse.newslbackend.dto.ArticleResponseDTO;
 import lk.ijse.newslbackend.dto.UserResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -60,6 +61,8 @@ public class Mapping {
         if (entityList == null) return null;
         if (dtoClass == UserResponseDTO.class)
             return modelMapper.map(entityList, new TypeToken<List<UserResponseDTO>>() {}.getType());
+        if (dtoClass == ArticleResponseDTO.class)
+            return modelMapper.map(entityList, new TypeToken<List<ArticleResponseDTO>>() {}.getType());
         return modelMapper.map(entityList, new TypeToken<List<T>>() {}.getType());
     }
 }

@@ -2,10 +2,13 @@ package lk.ijse.newslbackend.controller;
 
 import jakarta.validation.Valid;
 import lk.ijse.newslbackend.customObj.OtpResponse;
+import lk.ijse.newslbackend.customObj.UserResponse;
+import lk.ijse.newslbackend.dto.UserResponseDTO;
 import lk.ijse.newslbackend.jwtModels.JwtAuthResponse;
 import lk.ijse.newslbackend.jwtModels.UserRequestDTO;
 import lk.ijse.newslbackend.service.AuthService;
 import lk.ijse.newslbackend.service.JwtService;
+import lk.ijse.newslbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +28,8 @@ public class AuthController {
     private final AuthService authService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final UserService userService;
+
     /**
      * Endpoint for user registration.
      *
@@ -49,13 +54,14 @@ public class AuthController {
     /**
      * Endpoint for validating a user token.
      * @param token the JWT token
-     * @param email the email of the user
+     * @param username the email of the user
      * @return ResponseEntity with the validation status
      */
     @PostMapping("/validate")
-    public ResponseEntity<Boolean> validateUser(@RequestHeader("Authorization") String token,@RequestParam("email") String email){
+    public ResponseEntity<Boolean> validateUser(@RequestHeader("Authorization") String token,@RequestParam("username") String username){
         String extracted = jwtService.extractUsername(token.substring(7));
-        return ResponseEntity.status(HttpStatus.OK).body(extracted.equals(email));
+        UserResponseDTO selectedUser = userService.getSelectedUser(username);
+        return ResponseEntity.status(HttpStatus.OK).body(extracted.equals(selectedUser.getEmail()));
     }
     /**
      * Endpoint for requesting an OTP.

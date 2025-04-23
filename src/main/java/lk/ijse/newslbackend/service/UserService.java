@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserService {
     void updateUser(UserRequestDTO userRequestDTO);
     void deleteUser(String email);
-    UserResponse getSelectedUser(String email);
+    UserResponseDTO getSelectedUser(String username);
     List<UserResponseDTO> getAllUsers();
     UserDetailsService userDetailsService();
 }

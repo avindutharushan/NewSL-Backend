@@ -10,6 +10,7 @@ import lk.ijse.newslbackend.jwtModels.UserRequestDTO;
 import lk.ijse.newslbackend.repository.UserRepository;
 import lk.ijse.newslbackend.service.UserService;
 import lk.ijse.newslbackend.util.EmailUtil;
+import lk.ijse.newslbackend.util.ImageUploadUtil;
 import lk.ijse.newslbackend.util.Mapping;
 import lk.ijse.newslbackend.util.OtpManager;
 import lombok.RequiredArgsConstructor;
@@ -65,10 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getSelectedUser(String email) {
-        User user = userRepository.findByEmail(email)
+    @Transactional
+    public UserResponseDTO getSelectedUser(String username) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         UserResponseDTO userResponseDTO = mapping.convertToDTO(user, UserResponseDTO.class);
+        userResponseDTO.setUsername(username);
+        userResponseDTO.setProfilePicture(user.getProfilePicture());
         return userResponseDTO;
     }
 

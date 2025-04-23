@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
             var generatedToken = jwtService.generateToken(userByEmail);
             return JwtAuthResponse
                     .builder()
-                    .username(userByEmail.getEmail())
+                    .username(userByEmail.getNewSLUsername())
                     .token(generatedToken)
                     .role(userByEmail.getRole().getRoleByString())
                     .build();
@@ -108,7 +108,7 @@ public class AuthServiceImpl implements AuthService {
             var generatedToken = jwtService.generateToken(savedUser);
             return JwtAuthResponse
                     .builder()
-                    .username(savedUser.getEmail())
+                    .username(savedUser.getNewSLUsername())
                     .token(generatedToken)
                     .role(savedUser.getRole().getRoleByString())
                     .build();
@@ -126,7 +126,7 @@ public class AuthServiceImpl implements AuthService {
         var refreshToken = jwtService.refreshToken(user);
         return JwtAuthResponse
                 .builder()
-                .username(user.getEmail())
+                .username(user.getNewSLUsername())
                 .token(refreshToken)
                 .role(user.getRole().getRoleByString())
                 .build();

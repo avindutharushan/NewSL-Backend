@@ -23,8 +23,6 @@ public class Category {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String icon;
-
     // Relationships
     @OneToMany(mappedBy = "category")
     private List<ArticleCategory> articleCategories;

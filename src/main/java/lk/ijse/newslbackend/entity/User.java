@@ -71,4 +71,8 @@ public class User implements  UserDetails {
     public String getUsername() {
         return email;
     }
+
+    public String getNewSLUsername() {
+        return username;
+    }
 }

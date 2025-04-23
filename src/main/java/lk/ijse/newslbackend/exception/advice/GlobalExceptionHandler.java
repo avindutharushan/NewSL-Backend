@@ -37,6 +37,26 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
     /**
+     * This method is used to handle the exceptions that are thrown when the bookmark is not found.
+     * @param e BookmarkNotFoundException object
+     * @return ResponseEntity object with a BookmarkErrorResponse object and the status code
+     */
+    @ExceptionHandler(BookmarkNotFoundException.class)
+    public ResponseEntity<BookmarkErrorResponse> handleArticleNotFoundException(BookmarkNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new BookmarkErrorResponse(0, e.getMessage()));
+    }
+    /**
+     * This method is used to handle the exceptions that are thrown when the category is not found.
+     * @param e CategoryNotFoundException object
+     * @return ResponseEntity object with a CategoryErrorResponse object and the status code
+     */
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<CategoryErrorResponse> handleArticleNotFoundException(CategoryNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new CategoryErrorResponse(0, e.getMessage()));
+    }
+    /**
      * This method is used to handle the exceptions that are thrown when the article is not found.
      * @param e ArticleNotFoundException object
      * @return ResponseEntity object with a ArticleResponse object and the status code

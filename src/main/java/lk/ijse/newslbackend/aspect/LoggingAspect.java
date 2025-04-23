@@ -26,6 +26,8 @@ public class LoggingAspect {
     /**
      * Pointcuts for all controller methods.
      */
+    @Pointcut("execution(* lk.ijse.newslbackend.controller.UserController.*(..))")
+    public void userControllerMethods() {}
     @Pointcut("execution(* lk.ijse.newslbackend.controller.AuthController.*(..))")
     public void authControllerMethods() {}
     @Pointcut("execution(* lk.ijse.newslbackend.controller.HealthTestController.*(..))")
@@ -34,7 +36,7 @@ public class LoggingAspect {
      * Advice for logging before the method is executed.
      * @param joinPoint the method that is being executed.
      */
-    @Before("authControllerMethods() || healthTestControllerMethods()")
+    @Before("authControllerMethods() || healthTestControllerMethods() || userControllerMethods()")
     private void logBefore(JoinPoint joinPoint) {
         log.info("Entering method: {} with arguments: {}", joinPoint.getSignature().toShortString(), joinPoint.getArgs());
     }
@@ -43,7 +45,7 @@ public class LoggingAspect {
      * @param joinPoint the method that is being executed.
      * @param result the return value of the method.
      */
-    @AfterReturning(pointcut = "authControllerMethods() || healthTestControllerMethods()", returning = "result")
+    @AfterReturning(pointcut = "authControllerMethods() || healthTestControllerMethods() || userControllerMethods()", returning = "result")
     private void logAfterReturning(JoinPoint joinPoint, Object result) {
         if (result instanceof ResponseEntity<?> responseEntity) {
             logResponseEntity(joinPoint, responseEntity);

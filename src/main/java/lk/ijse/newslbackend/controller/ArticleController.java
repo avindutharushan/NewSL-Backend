@@ -25,7 +25,7 @@ public class ArticleController {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)}.
      */
     @PreAuthorize("hasAnyRole('REPORTER', 'ADMIN')")
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/save")
     public ResponseEntity<Void> saveArticle(@Valid @ModelAttribute ArticleRequestDTO articleDTO) {
         articleService.saveArticle(articleDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();

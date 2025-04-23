@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Premium Payment Success</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a1a;
+            background-image: linear-gradient(135deg, #252525 25%, transparent 25%),
+            linear-gradient(225deg, #252525 25%, transparent 25%),
+            linear-gradient(45deg, #252525 25%, transparent 25%),
+            linear-gradient(315deg, #252525 25%, #1a1a1a 25%);
+            background-position: 10px 0, 10px 0, 0 0, 0 0;
+            background-size: 20px 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            width: 90%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #1a1a1a;
+            animation: fadeIn 1s ease-in-out;
+            border: 1px solid #ffd700;
+        }
+        .header {
+            background: linear-gradient(90deg, #1a1a1a, #333333);
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            color: #ffd700;
+            border-bottom: 3px solid #ffd700;
+        }
+        .email-body {
+            padding: 20px;
+        }
+        .footer {
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #444444;
+            background-color: #fff5ad;
+            border-radius: 0 0 10px 10px;
+        }
+        .success-icon {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 50px;
+            color: #4CAF50;
+        }
+        .payment-details {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+        .payment-details p {
+            margin: 8px 0;
+        }
+        .premium-benefits {
+            margin: 25px 0;
+        }
+        .premium-benefits ul {
+            padding-left: 20px;
+        }
+        .premium-benefits li {
+            margin-bottom: 10px;
+        }
+        .cta-button {
+            display: block;
+            text-align: center;
+            margin: 25px auto;
+        }
+        .cta-button a {
+            background-color: #ffd700;
+            color: #1a1a1a;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .cta-button a:hover {
+            background-color: #ffea00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="email-wrapper">
+    <div class="header">
+        <h1>Payment Successful!</h1>
+    </div>
+    <div class="email-body">
+        <div class="success-icon">✓</div>
+        <h2>Congratulations, <span th:text="${name}">User</span>!</h2>
+        <p>Your payment has been successfully processed and your account has been upgraded to <strong>Premium</strong>. Thank you for your support!</p>
+
+        <div class="payment-details">
+            <h3>Payment Details:</h3>
+            <p><strong>Transaction ID:</strong> <span th:text="${transactionId}">TX123456789</span></p>
+            <p><strong>Amount:</strong> <span th:text="${amount}">$9.99</span></p>
+            <p><strong>Date:</strong> <span th:text="${date}">April 22, 2025</span></p>
+            <p><strong>Plan:</strong> <span th:text="${planName}">Premium Monthly</span></p>
+        </div>
+
+        <div class="premium-benefits">
+            <h3>You now have access to:</h3>
+            <ul>
+                <li>Ad-free browsing experience</li>
+                <li>Exclusive premium content</li>
+                <li>Early access to new features</li>
+                <li>Priority customer support</li>
+                <li>Unlimited access to all NewSL resources</li>
+            </ul>
+        </div>
+
+        <p>Your premium subscription is now active and will automatically renew on <span th:text="${renewalDate}">May 22, 2025</span>. You can manage your subscription at any time from your account settings.</p>
+
+        <div class="cta-button">
+            <a  href="/index.html">Go to Your Dashboard</a>
+        </div>
+
+        <p>If you have any questions or need assistance with your premium account, please don't hesitate to contact our support team.</p>
+    </div>
+    <div class="footer">
+        <p>Thank you for choosing Premium! <br> The NewSL Team</p>
+    </div>
+</div>
+</body>
+</html>
